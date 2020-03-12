@@ -31,8 +31,10 @@ public class AI {
 		
 		DFS(height+1, 0, brain.root);
 		
+		
 		for(int i = 0; i< 7; i++)
-			System.out.println(brain.root.children[i].value +"I am a hoe lmao");
+			if(brain.root.children[i] != null)
+				System.out.println(brain.root.children[i].value +"I am a hoe lmao");
 		
 		//brain.root.children.get(0);
 		
@@ -194,7 +196,7 @@ public class AI {
 					else if(hold == 3 && empty >=1) 
 						if (value < 8)
 							value = 8;
-					if(hold == 4) 
+					else if(hold == 4) 
 						if (value < 16)
 							value = 16;
 					i = 7;

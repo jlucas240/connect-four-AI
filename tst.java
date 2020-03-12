@@ -27,13 +27,14 @@ public class tst {
 			}
 			
 			crashMeBaby.build(hold);
-			int max = 0;
+			int max = -5000;
 			move = 0;
 			for(int i = 0; i < 7; i++) {
-				if(max < crashMeBaby.brain.root.children[i].value) {
-					max = crashMeBaby.brain.root.children[i].value;
-					move = i+1;
-				}
+				if(crashMeBaby.brain.root.children[i] != null)
+					if(max < crashMeBaby.brain.root.children[i].value) {
+						max = crashMeBaby.brain.root.children[i].value;
+						move = i+1;
+					}
 					
 			}
 			game.insert(2, move);

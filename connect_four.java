@@ -15,8 +15,14 @@ public class connect_four {
 		winner = 0;
 		spots = 0;
 	}
+	/**
+	 * 
+	 * @param player
+	 * @param columb do should be normal counting not cs counting
+	 * @return
+	 */
 	
-	public Boolean insert(int player, int columb) {
+	public Boolean insert(int player, int columb) { 
 		if (columb < 1 || columb >7) {
 			//throw error
 		}
@@ -35,9 +41,9 @@ public class connect_four {
 		return false;
 	}
 	
-	public void check_winner(int row, int columb, int player) {
+	public void check_winner(int row, int columb, int player) { // not working
 		int hold = 0;
-		
+		winner = 0;
 		if (row >= 3) { // 4 stacks
 			for(int i = 1; i < 4; i++) {
 				if (bord[row - i][columb] == player) {}
@@ -78,6 +84,7 @@ public class connect_four {
 					hold = 0;}
 				if (hold == 4) {
 					winner = player;
+					System.out.println("i am the bug!!!!!");
 					return;
 				}
 				++j;
@@ -103,12 +110,13 @@ public class connect_four {
 		
 	}
 	
-	public void undo(int columb) {
+	public void undo(int columb, int player) {
 		
-		for (int i = 0; i < 6; i++) {
-			if(bord[i][columb-1] != 0) {
-				bord[i][columb-1] = 0;
+		for (int i = 5; i >= 0; i--) {
+			if(bord[i][columb] != 0) {
+				bord[i][columb] = 0;
 				spots--;
+				check_winner(i, columb, player);
 				return;
 			}
 		}

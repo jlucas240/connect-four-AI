@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 
 class Tree {
 
@@ -11,8 +11,8 @@ class Tree {
 
     }
 
-    public Boolean insert(Node parent, Node child) {
-        parent.children.add(child);
+    public Boolean insert(Node parent, int value, int location) {
+        parent.children[location] = new Node(parent,value);
         return true;
     }
 
@@ -23,7 +23,7 @@ class Tree {
     public class Node {
 
         Node parent;
-        ArrayList<Node> children;
+        Node children[];
         int value;
         int A;
         int B;
@@ -31,7 +31,7 @@ class Tree {
         public Node(Node p, int v) {
             parent = p;
             value = v;
-            children = new ArrayList<Node>();
+            children = new Node[7];
         }
     }
 }

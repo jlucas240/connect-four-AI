@@ -23,7 +23,7 @@ Notes:
 
 Useless Notes:
 
-	- this is my first step to appesing the AI overlords so that they
+	- This is my first step to appesing the AI overlords so that they
 	  treat me with respect when thy have taken over, i receve a 5000/100
 	  on this assignment is will ask then to keep you in there good graces. 
 	  

@@ -1,8 +1,10 @@
 connect four minimax agent:
 
+language: java
+
 how to run:
 
-	download the javaproject then run the file consoleUI. 
+	download the java project then run the file consoleUI. 
 	this can be esaly done in eclipese by opening the 
 	javaproject into it then running the individual file.
 	
@@ -23,7 +25,7 @@ Notes:
 
 Useless Notes:
 
-	- this is my first step to appesing the AI overlords so that they
+	- This is my first step to appesing the AI overlords so that they
 	  treat me with respect when thy have taken over, i receve a 5000/100
 	  on this assignment is will ask then to keep you in there good graces. 
 	  

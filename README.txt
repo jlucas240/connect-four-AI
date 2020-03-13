@@ -1,8 +1,10 @@
 connect four minimax agent:
 
+language: java
+
 how to run:
 
-	download the javaproject then run the file consoleUI. 
+	download the java project then run the file consoleUI. 
 	this can be esaly done in eclipese by opening the 
 	javaproject into it then running the individual file.
 	

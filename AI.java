@@ -50,10 +50,11 @@ public class AI {
 		
 		for(int i = 0; i< 7; i++)
 			if(brain.root.children[i] != null)
-				System.out.println(brain.root.children[i].value +"I am a hoe lmao");
+				//System.out.println(brain.root.children[i].value +"I am a hoe lmao");
 		
 		//brain.root.children.get(0);
 		
+		return false;
 		return false;
 	}
 	/**
@@ -110,7 +111,7 @@ public class AI {
 		// find the correct hyristic for the current spot on the tree
 		if(level == 6 || simulation.spots == 6*7) { // ALSO update here when canging the leve to stop at
 			c.value = hyristic();
-			System.out.println(c.value+"I am a slutttttt");
+			//System.out.println(c.value+"I am a slutttttt");
 		}
 		
 		// compare childrens values then take the lowest or highest

@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author Joshua Lucas
+ *
+ */
 
 class Tree {
 

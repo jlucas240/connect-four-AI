@@ -56,13 +56,15 @@ public class connect_four {
 			}
 		}
 		
-		for(int i = 0; i < 7; i++) {
+		for(int i = 0; i < 7; i++) { // there is some error here and i have no clue what it is -_- this is supposed to detect 4 in a row but nah it don't do that
 			if(bord[row][i] == player)
-				++hold;
+				hold++;
 			else
 				hold = 0;
+			
 			if (hold == 4) {
 				winner = player;
+				System.out.println("why are you not working");
 				return;
 			}
 		}
@@ -75,6 +77,7 @@ public class connect_four {
 		}
 		
 		if(columb-hold2 < 4) {// will have out of bounds index error needs to be fixed.
+			hold = 0;
 			int j = row - hold2;
 			for (int i = columb - hold2; i < 7 && i >= 0 && j < 6; i++) {
 				if (bord[j][i] == player) {
@@ -93,6 +96,7 @@ public class connect_four {
 
 		
 		if(columb+hold2 > 3) { // will have out of bounds index error needs to be fixed.
+			hold = 0;
 			int j = row - hold2;
 			for (int i = columb + hold2; i < 7 && i >= 0 && j < 6 ; i--) {
 				if (bord[j][i] == player)

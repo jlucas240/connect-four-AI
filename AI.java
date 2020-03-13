@@ -4,28 +4,44 @@ import java.io.IOException;
 
 // notes on the simulation AI will always be 1 and enemy will be 2
 
-
+/**
+ * 
+ * @author Joshua Lucas
+ *
+ */
 
 
 public class AI {
 	
-	int level;
-	int player;
-	Tree brain;
-	connect_four simulation;
+	int level; // how fare down the tree has expanded
+	int player; // Always 2
+	Tree brain; // minimax tree
+	connect_four simulation; // bord used to grow minimax
+	
+	/**
+	 *  basic contructor sets up player and initiates the trees level
+	 * @param p players id
+	 */
 	
 	public AI(int p) {
 		player = p;
 		level = 0;
 	}
 	
+	/**
+	 * makes the minimax tree initialy
+	 * @param b the bord state of the game
+	 * @return i don't know realy why this is here
+	 * @throws IOException cause of errors i didn't want to check
+	 */
+	
 	public boolean build(int[][] b) throws IOException {
 		
 		int height = 0; // when height is positive use max, else use min
 		
 		brain = new Tree();	
-		brain.root.A = 1000000000;
-		brain.root.B = -1000000000;
+		brain.root.A = 1000000000; // didn't get around to setting up
+		brain.root.B = -1000000000; // didn't get around to setting up
 		simulation = new connect_four();
 		simulation.bord = b;
 		
@@ -40,36 +56,42 @@ public class AI {
 		
 		return false;
 	}
-	
+	/**
+	 * does dfs to find the leaf nodes then uses a heuristic to determine the values of each node
+	 * @param h height of the tree
+	 * @param columb column of the bord
+	 * @param c current node
+	 * @throws IOException
+	 */
 	public void DFS(int h, int columb, Tree.Node c) throws IOException{
 		
-		
-		for (int i = 5; i >=0 ; i--)
+		// prints the board to console is currently commented out because no longer needed
+		/*for (int i = 5; i >=0 ; i--) 
 		{
 			for (int j = 0; j < 7; j++)
 				System.out.print(simulation.bord[i][j]);
 			System.out.println("");
 		}
 		
-		System.out.println("\n");
+		System.out.println("\n");*/
 		
-		int current_columb = columb;
-		System.out.println("winner : "+ simulation.winner);
+		int current_columb = columb; 
+		//System.out.println("winner : "+ simulation.winner);
 		if(level < 6) // try for 6 and if you do alpha beta pruning 8
-			if (simulation.winner == 0) {
+			if (simulation.winner == 0) { // this grows the tree to its limited depth
 				for(int i = 0; i < 7; i++) {
 					if(simulation.bord[5][i] == 0) {
 						simulation.insert(h%2+1, i+1);
 						
-						System.out.println("\n");
-						System.out.println(i);
-						System.out.println("\n");
+						//System.out.println("\n");
+						//System.out.println(i);
+						//System.out.println("\n");
 						if(h%2 == 0)
 							brain.insert(c, -1000000000, i); // max state
 						else
 							brain.insert(c, 1000000000, i); // min state
 						level++;
-						DFS(h+1, i, c.children[i] );
+						DFS(h+1, i, c.children[i] ); // recursive call to grow the tree
 					}
 				}
 			}
@@ -85,61 +107,42 @@ public class AI {
 		
 		// caluclations done if the value if at leaf node
 		//_____________________________________________________________________________
-		
+		// find the correct hyristic for the current spot on the tree
 		if(level == 6 || simulation.spots == 6*7) { // ALSO update here when canging the leve to stop at
 			c.value = hyristic();
 			System.out.println(c.value+"I am a slutttttt");
 		}
 		
-		
-		
-		
-		
-		
-		/*if(simulation.winner != 0) {
-			System.out.println(c.value);
-			int value = 0;
-			for(int i = 0; i < 6; i++) {
-				for(int j = 0; j < 7; j++) {
-					if( simulation.bord[i][j] == 1)
-						value++;
-				}
-			}
-			if(simulation.winner == 1)
-				c.value = value;
-			else
-				c.value = value*-1;
-			simulation.undo(current_columb, h%2+1);
-			level--;
-			return; // add undo
-		}
-		else if(simulation.spots == 6*7) { // if board is full aka a draw
-			c.value = 0;
-			simulation.undo(current_columb, h%2+1);
-			level--;
-			return;
-		}*/
-		
 		// compare childrens values then take the lowest or highest
 		//_____________________________________________________________________________
-		if (state == 0) {
+		if (state == 0) { // if the node is a maximiser then get max child
 			for(int i = 0; i < 7; i++)
 				if (c.children[i] != null)
 					if (c.children[i].value < c.value)
 						c.value = c.children[i].value;
 		}
-		else {
+		else { // if node is minimizer then get min child
 			for(int i = 0; i < 7; i++)
 				if (c.children[i] != null)
 					if (c.children[i].value > c.value)
 						c.value = c.children[i].value;
 		}
 		
-		simulation.undo(current_columb, h%2+1);
-		System.out.println(c.value);
+		simulation.undo(current_columb, h%2+1); // remove play from bord
+		//System.out.println(c.value);
 		level--;
 		return;
 	}
+	
+	/**
+	 * heuristic function
+	 * - it looks for more than 1 in a row
+	 * - more than 1 in a column
+	 * - more than 1 on the diaganoal in both directions
+	 * these are done for both the ai and its opponent 
+	 * the lowest possible is -400 for a lose
+	 * @return
+	 */
 	
 	private int hyristic() {
 		

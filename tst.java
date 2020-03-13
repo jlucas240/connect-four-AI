@@ -1,13 +1,31 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-public class tst {
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-	public static void main(String[] args) throws IOException {
+public class tst {
+	
+	
+	/*public void start(Stage stage) throws IOException {
+		
+		//  instantiate the FXMainPane, name it root
+		GUI root = new GUI();		
+		//  set the scene to hold root
+		stage.setScene(new Scene(root, 600, 500)); 
+		//set stage title
+		stage.setTitle("AI_overlord");
+		//display the stage
+		stage.show();
+
+	}*/
+
+	/*public static void main(String[] args) throws IOException {
+		
 		
 		
 		//in this test player goes first goes first
-		connect_four game = new connect_four();
+		/*connect_four game = new connect_four();
 		
 		Scanner myObj = new Scanner(System.in);
 		
@@ -53,6 +71,6 @@ public class tst {
 		/*AI crashMeBaby = new AI(1);
 		crashMeBaby.build();*/
 		
-	}
+	//}
 
 }
